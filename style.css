@@ -1,0 +1,551 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    /* Le dégradé de base */
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    /* Important pour ne pas avoir de scrollbars */
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+
+    background-color: #FF3BEB; /* Un rose magenta par défaut */
+    
+    background:
+        /* 1. Reflet lumineux diagonal (blanc semi-transparent) */
+        linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%),
+        
+        /* 2. Autre reflet lumineux plus large */
+        linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%),
+        
+        /* 3. Dégradé de base vertical (du rose clair au rose foncé) */
+        linear-gradient(to bottom right, #5C1D50, #FF3BEB);
+        
+    /* Assure que le fond couvre tout le conteneur */
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    /* Applique Bebas Neue partout */
+}
+
+
+/* Animation du Background */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Style commun mis à jour */
+.triangle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+
+    /* 1. Calcul de la hauteur pour un angle de 30° (tan(30) ≈ 0.577) */
+    /* On définit la hauteur comme 57.7% de la largeur */
+    height: calc(var(--largeur) * 0.577);
+    width: var(--largeur);
+
+    /* 2. On garde le clip-path sur le nouveau rectangle */
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    pointer-events: none;
+}
+
+/* On utilise des variables CSS pour gérer la taille facilement */
+.grand {
+    --largeur: 80vmax;
+    /* Augmenté un peu car le triangle est plus "plat" */
+}
+
+.moyen {
+    --largeur: 55vmax;
+}
+
+.petit {
+    --largeur: 25vmax;
+}
+
+.sidebar-droite {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 43vh;
+    z-index: 10;
+    /* Pour qu'elle passe au-dessus des triangles si besoin */
+}
+
+.sidebar-droite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centre le logo horizontalement dans la barre */
+    /* ... gardez vos styles précédents ... */
+}
+
+.logo-sidebar {
+    margin-top: 6vh;
+    /* Distance par rapport au haut */
+    height: 8vh;
+    /* Hauteur imposée */
+    width: auto;
+    /* Garde les proportions du logo */
+}
+
+.logo-top-gauche {
+    margin-top: 6vh;
+    position: fixed;
+    /* Reste en place même si on scrolle */
+    left: 8vh;
+    /* 50px de la gauche */
+    height: 10%;
+    /* Même hauteur que l'autre logo pour l'harmonie */
+    width: auto;
+    z-index: 20;
+    /* Passe au-dessus de tout le reste */
+}
+
+/* Conteneur principal inspiré de l'image */
+.d17-container {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 5vh;
+    padding: 2vh;
+}
+
+.d17-title {
+    font-size: 6vh;
+    /* Bebas Neue peut être écrite très gros */
+    font-weight: 400;
+    /* La police n'a qu'un seul poids (400) */
+    line-height: 0.9;
+    margin-bottom: 2vh;
+    letter-spacing: 0.1vh;
+    color: #1e1e1e;
+}
+
+.d17-title .thin {
+    color: #ffffff;
+}
+
+.d17-info-box {
+    background: #1e1e1e;
+    padding: 1.5vh;
+    border-radius: 0.5vh;
+    font-size: 2.5vh;
+    /* AJOUTE margin: 0 auto pour centrer le bloc */
+    margin: 0 auto 2vh auto;
+    border-left: 0.5vh solid white;
+    border-right: 0.5vh solid #1e1e1e;
+    width: 100%;
+}
+
+.d17-info-box span {
+    color: #FF3BEB;
+}
+
+.d17-email-field {
+    width: 100%;
+    margin-top: 1vh;
+    padding: 1vh;
+    background: rgba(255, 255, 255, 0.9);
+    /* Fond blanc cassé pour bien voir l'email */
+    border: 0.2vh solid #ffffff;
+    /* Rappel du rose */
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4vh;
+    outline: none;
+    box-sizing: border-box;
+    /* Pour que le padding ne dépasse pas */
+}
+
+.d17-email-field:focus {
+    background: #fff;
+    box-shadow: 0 0 1vh #FF3BEB
+}
+
+/* On ajuste le texte de la box pour qu'il ne soit pas trop collé */
+.d17-info-box p {
+    margin-bottom: 0.8vh;
+    margin-top: 0.8vh;
+    line-height: 1.2;
+}
+
+.form-container {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    width: 88%;
+    /* AJOUTE CECI pour garantir le centrage */
+    margin: 0 auto;
+}
+
+/* 3. Style de la zone de texte */
+#dedicaceInput {
+    width: 100%;
+    height: 12vh;
+    padding: 1vh;
+    background: white;
+    color: black;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5vh;
+    text-transform: uppercase;
+    border-left: 0.5vh solid white;
+    border-right: 0.5vh solid #1e1e1e;
+    resize: none;
+
+}
+
+#dedicaceInput:focus {
+    box-shadow: 0 0 1vh #FF3BEB
+}
+
+button {
+    width: 100%;
+    margin-top: 3.2vh;
+    background: #1e1e1e;
+    border: 0.2vh solid white;
+    color: white;
+    padding: 1vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.2vh;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: white;
+    color: #ff33da;
+}
+
+#bg-video {
+    position: fixed;
+    width: 155vh;
+    z-index: 5;
+    /* Place la vidéo derrière tout le reste */
+    object-fit: cover;
+    /* Recadre pour remplir l'écran sans déformer */
+}
+
+#overlay-depart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    /* Fond Blanc */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    cursor: pointer;
+}
+
+/* Conteneur pour centrer verticalement le tout */
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    animation: zoomIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Le logo à 50% de la hauteur de l'écran */
+.overlay-logo {
+    height: 30vh;
+    width: auto;
+    margin-bottom: 3vh;
+    /* Espace sous le logo */
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
+    /* Légère ombre classe */
+}
+
+/* Le texte qui donne envie */
+.overlay-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5vh;
+    /* Texte assez gros */
+    margin: 0 0 4vh 0;
+}
+
+.overlay-text span {
+    color: #FF3BEB;
+    /* "CLIPS" en rose */
+}
+
+/* Animation d'apparition */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.logo-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    /* Le conteneur prend 80% de la largeur de l'écran */
+}
+
+.logo-animation img {
+    width: 100%;
+    /* L'image remplit tout le conteneur de 80vw */
+    height: auto;
+    /* Garde les proportions */
+    max-height: 60vh;
+    /* Évite que le logo ne soit trop haut sur mobile */
+    margin-bottom: 40px;
+}
+
+.logo-animation button {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    background: #FF3BEB;
+    color: white;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.logo-animation button:hover {
+    background: #ffffff;
+    color: #FF3BEB;
+}
+
+.logo-animation {
+    animation: zoomIn 1s ease-out;
+}
+
+/* --- BARRE DU BAS (TICKER) --- */
+.ticker-container {
+    position: fixed;
+    bottom: 5vh;
+    /* Position par rapport au bas */
+    left: 8vh;
+    /* Aligné avec le logo du haut */
+    z-index: 9;
+    /* Au-dessus de la vidéo (5), mais sous la sidebar (10) */
+    display: flex;
+    align-items: center;
+    /* Aligne l'image et le texte verticalement */
+}
+
+.ticker-icon {
+    height: 5vh;
+    /* Taille de l'image (téléphone) */
+    width: auto;
+    margin-right: -1.4vh;
+    /* Espace entre l'image et le texte */
+    z-index: 10;
+}
+
+.ticker-text {
+    background: white;
+    color: black;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3vh;
+    padding: 0.5vh 1.8vh;
+
+    /* Empêche le texte de sauter à la ligne pendant l'animation */
+    white-space: nowrap;
+
+    /* Lance l'animation définie plus haut */
+    /* 1.5s = durée, cubic-bezier = fluidité pro, forwards = reste affiché à la fin */
+    /* On garde ton animation d'entrée au chargement du site */
+}
+
+/* C'est cette classe qui va lancer l'animation à chaque fois */
+.animate-reveal {
+    animation: revealAnimation 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes revealAnimation {
+    0% {
+        /* Au début : on coupe 100% de l'élément depuis la droite */
+        clip-path: inset(0 100% 0 0);
+    }
+
+    100% {
+        /* À la fin : on ne coupe plus rien (0%) */
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* 3. Style du bouton quand il est désactivé (pendant l'envoi) */
+button:disabled {
+    background: white;
+    color: #ff33da;
+    border-color: #ff33da;
+    cursor: not-allowed;
+    /* Curseur "interdit" */
+    opacity: 0.7;
+}
+
+/* --- ADAPTATION MOBILE --- */
+@media (max-width: 768px) {
+    
+    .overlay-content{
+        padding-bottom: 20vh;
+    }
+    /* Réduction du logo principal */
+    .overlay-logo {
+        height: 15vh; /* Divisé par 2 par rapport à la version PC */
+        margin-bottom: 1.5vh;
+    }
+
+    /* Réduction du texte de l'overlay */
+    .overlay-text {
+        font-size: 3.2vh; /* Plus petit pour éviter les retours à la ligne brusques */
+        line-height: 1.1;
+    }
+
+    /* Ajustement de la largeur du contenu pour qu'il respire */
+    .overlay-content {
+        width: 85%;
+    }
+
+    #bg-video {
+        width: 80vw;    /* Toute la largeur */   /* Exactement la moitié de la hauteur */
+        top: 0;         /* Collée en haut */
+        left: 0;
+        object-fit: cover; /* Pour que l'image ne soit pas écrasée */
+        position: fixed;
+    }
+
+    .logo-top-gauche {
+        margin-top: 2vh;
+        /* Reste en place même si on scrolle */
+        left: 2vh;
+        /* 50px de la gauche */
+        height: 6vh;
+    }
+
+    .logo-sidebar {
+        position: fixed;    /* On le détache du flux pour le bloquer en haut */
+        top: 2vh;           /* Aligné en haut */
+        right: 0.5vh;         /* Aligné à droite */
+        height: 6vh;        /* Taille réduite pour mobile */
+        margin-top: 0;      /* Supprime la marge du format PC */
+        z-index: 1000;      /* Doit être au-dessus de TOUT */
+    }
+
+    .sidebar-droite {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: auto;
+        width: 100%;
+        height: auto;
+        z-index: 20;
+        padding-bottom: 1vh;
+    }
+
+    /* Le ticker est à 27vh, on place le titre juste en dessous */
+    .d17-container {
+        order: 1; /* Le titre passe en premier dans le flux flex */
+        margin-top: 0;
+        padding: 0.5vh 2vh;
+    }
+
+    .d17-title {
+        font-size: 2.8vh; /* Taille réduite pour gagner de l'espace */
+        margin-bottom: 1vh;
+        text-align: left;
+    }
+
+    /* Conteneur des deux boîtes côte à côte */
+    .mobile-flex-container {
+        order: 2; /* Les boîtes passent après le titre */
+        display: flex;
+        flex-direction: row;
+        gap: 1vh;
+        align-items: stretch;
+        width: 45vh;
+        margin: 0 auto;
+    }
+
+    /* Réduction de la hauteur des boîtes */
+    .d17-info-box {
+        flex: 1;
+        padding: 0.8vh; /* Padding réduit */
+        font-size: 1.5vh; /* Texte plus petit pour que ça tienne */
+        margin-bottom: 0 !important;
+        min-height: 10vh; /* Hauteur minimum réduite */
+    }
+
+    .d17-info-box p {
+        margin: 0.2vh 0; /* Marges de texte réduites */
+        line-height: 1.1;
+    }
+
+    .d17-email-field {
+        font-size: 1.5vh;
+        padding: 0.5vh;
+    }
+
+    #dedicaceInput {
+        flex: 1;
+        height: auto !important; /* S'aligne sur la box info */
+        font-size: 1.8vh;
+        padding: 0.8vh;
+    }
+
+    /* Le bouton Envoyer */
+    .form-container {
+        order: 3; /* Le bouton reste en bas */
+        width: 92%;
+        margin: 0 auto;
+    }
+    
+    /* Bouton envoyer plus compact */
+    button {
+        width: 45vh;
+        margin-top: 1vh;
+        font-size: 2vh;
+        padding: 1vh;
+    }
+
+    /* Le ticker reste au-dessus de tout ce bloc */
+    .ticker-container {
+        bottom: 24.5vh; /* Légèrement remonté pour ne pas chevaucher le titre */
+        left: 2vh;
+        z-index: 21;
+    }
+
+    .ticker-icon {
+        height: 4vh;
+        }
+
+    .ticker-text {
+        font-size: 2vh;
+    }
+}
+
+
+

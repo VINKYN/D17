@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Triangles Superposés</title>
+
+</head>
+
+<body>
+
+    <div id="overlay-depart" onclick="lancerSite()">
+        <div class="overlay-content">
+            <img src="content/logo top Lenvrs.svg" alt="Logo" class="overlay-logo">
+            <h1 class="overlay-text">
+                <span>CLIQUE</span> POUR DÉCOUVRIR LES MEILLEURS <br> <span>CLIPS</span> DU MOMENT !!!
+            </h1>
+        </div>
+    </div>
+
+    <video loop playsinline muted preload="auto" id="bg-video">
+        <source src="content/MIKA - Grace Kelly - Phone.mp4" type="video/mp4" media="(max-width: 768px)">
+        
+        <source src="content/MIKA - Grace Kelly.mp4" type="video/mp4">
+    </video>
+    <img src="content/logo top Lenvrs.svg" alt="Logo Top" class="logo-top-gauche">
+    <div class="triangle grand"></div>
+    <div class="triangle moyen"></div>
+    <div class="triangle petit"></div>
+
+    <div class="sidebar-droite">
+    <img src="content/logo L17.svg" alt="Logo L17" class="logo-sidebar">
+
+    <div class="d17-container">
+        <h2 class="d17-title">ENVOIE <span class="thin">TES</span> DEDICACES !!</h2>
+        
+        <div class="mobile-flex-container">
+            <div class="d17-info-box">
+                <p>ET TENTE DE GAGNER UN T-SHIRT EN AJOUTANT TON E-MAIL !!!</p>
+                <input type="email" id="emailInput" placeholder="TON-EMAIL@EXEMPLE.COM" class="d17-email-field">
+            </div>
+
+            <textarea id="dedicaceInput" placeholder="Écris ta dédicace ici..."></textarea>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <button onclick="envoyerMessage()">ENVOYER</button>
+        <p id="statut"></p>
+    </div>
+</div>
+    <div class="ticker-container">
+        <img src="content/tel.svg" alt="Icone" class="ticker-icon">
+
+        <div class="ticker-text animate-reveal" id="ticker-content">
+            WEEK OF COLOR BIENTOT DISPOOOOOOOOO
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
