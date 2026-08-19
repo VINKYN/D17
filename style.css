@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+}
+
 html, body {
     width: 100%;
     height: 100vh;
@@ -188,6 +192,7 @@ html, body {
     left: 8vh;
     height: 10%;
     width: auto;
+    max-width: 25vw;
     z-index: 20;
     pointer-events: none;
 }
@@ -209,6 +214,7 @@ html, body {
     margin-top: 6vh;
     height: 8vh;
     width: auto;
+    max-width: 15vh;
 }
 
 .rotating {
@@ -354,6 +360,8 @@ button:disabled {
     z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s;
     cursor: pointer;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .overlay-content {
@@ -361,21 +369,26 @@ button:disabled {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 90%;
+    width: 100%;
+    max-width: 480px;
     animation: zoomIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .overlay-logo {
-    height: 30vh;
-    width: auto;
-    margin-bottom: 3vh;
+    width: 85vw;
+    max-width: 380px;
+    height: auto;
+    max-height: 25vh;
+    object-fit: contain;
+    margin-bottom: 24px;
     filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
 }
 
 .overlay-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 5vh;
-    margin: 0 0 4vh 0;
+    font-size: clamp(24px, 4.5vh, 48px);
+    line-height: 1.15;
+    margin: 0;
 }
 
 .overlay-text span {
@@ -439,18 +452,22 @@ button:disabled {
     
     /* 1. OVERLAY DE DEPART */
     .overlay-content {
-        width: 85%;
-        padding-bottom: 5vh;
+        width: 100%;
+        max-width: 320px;
+        padding-bottom: 20px;
     }
 
     .overlay-logo {
-        height: 18vh;
-        max-height: 130px;
-        margin-bottom: 2vh;
+        width: 80vw;
+        max-width: 260px;
+        height: auto;
+        max-height: 18vh;
+        object-fit: contain;
+        margin-bottom: 16px;
     }
 
     .overlay-text {
-        font-size: clamp(20px, 3.8vh, 30px);
+        font-size: clamp(20px, 5.5vw, 28px);
         line-height: 1.15;
         margin: 0;
     }
@@ -516,6 +533,7 @@ button:disabled {
         height: 26px;
         max-height: 26px;
         width: auto;
+        max-width: 35vw;
         z-index: 20;
         margin-top: 0;
     }
