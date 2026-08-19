@@ -22,42 +22,58 @@
         </div>
     </div>
 
-    <video loop playsinline muted preload="auto" id="bg-video">
-        <source src="./content/mika vertical.mp4" type="video/mp4" media="(max-width: 768px)">
-    
-    <source src="./content/Lenvrs Week of colors Mika.mp4" type="video/mp4">
-    </video>
+    <video loop playsinline muted preload="auto" id="bg-video"></video>
+
+    <!-- Contrôle du son en bas à gauche de la vidéo (blanc transparent, très discret) -->
+    <div id="sound-control" class="sound-control">
+        <button id="sound-btn" class="sound-btn" aria-label="Activer ou couper le son" title="Son">
+            <svg id="icon-sound-on" class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <svg id="icon-sound-off" class="sound-icon sound-icon-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+        <div class="volume-slider-wrapper">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+        </div>
+    </div>
+
     <img src="content/logo top Lenvrs.svg" alt="Logo Top" class="logo-top-gauche">
     <div class="triangle grand"></div>
     <div class="triangle moyen"></div>
     <div class="triangle petit"></div>
 
     <div class="sidebar-droite">
-    <img src="content/logo L17.svg" alt="Logo L17" class="logo-sidebar">
+        <img src="content/logo L17.svg" alt="Logo L17" class="logo-sidebar">
 
-    <div class="d17-container">
-        <h2 class="d17-title">ENVOIE <span class="thin">TES</span> DEDICACES !!</h2>
-        
-        <div class="mobile-flex-container">
-            <div class="d17-info-box">
-                <p>ET TENTE DE GAGNER UN T-SHIRT EN AJOUTANT TON E-MAIL !!!</p>
-                <input type="email" id="emailInput" placeholder="TON-EMAIL@EXEMPLE.COM" class="d17-email-field">
+        <div class="ticker-container">
+            <img src="content/tel.svg" alt="Icone" class="ticker-icon">
+            <div class="ticker-text animate-reveal" id="ticker-content">
+                WEEK OF COLOR BIENTOT DISPOOOOOOOOO
             </div>
-
-            <textarea id="dedicaceInput" placeholder="Écris ta dédicace ici..."></textarea>
         </div>
-    </div>
 
-    <div class="form-container">
-        <button onclick="envoyerMessage()">ENVOYER</button>
-        <p id="statut"></p>
-    </div>
-</div>
-    <div class="ticker-container">
-        <img src="content/tel.svg" alt="Icone" class="ticker-icon">
+        <div class="d17-container">
+            <h2 class="d17-title">ENVOIE <span class="thin">TES</span> DEDICACES !!</h2>
+            
+            <div class="mobile-flex-container">
+                <div class="d17-info-box">
+                    <p>ET TENTE DE GAGNER UN T-SHIRT EN AJOUTANT TON E-MAIL !!!</p>
+                    <input type="email" id="emailInput" placeholder="TON-EMAIL@EXEMPLE.COM" class="d17-email-field">
+                </div>
 
-        <div class="ticker-text animate-reveal" id="ticker-content">
-            WEEK OF COLOR BIENTOT DISPOOOOOOOOO
+                <textarea id="dedicaceInput" placeholder="Écris ta dédicace ici..."></textarea>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <button onclick="envoyerMessage()">ENVOYER</button>
+            <p id="statut"></p>
         </div>
     </div>
     <script src="script.js"></script>

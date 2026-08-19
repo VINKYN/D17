@@ -20,6 +20,126 @@ const textarea = document.getElementById('dedicaceInput');
 const emailField = document.getElementById('emailInput');
 const statut = document.getElementById('statut');
 
+// Éléments Audio
+const soundBtn = document.getElementById('sound-btn');
+const soundControl = document.getElementById('sound-control');
+const volumeSlider = document.getElementById('volume-slider');
+const iconSoundOn = document.getElementById('icon-sound-on');
+const iconSoundOff = document.getElementById('icon-sound-off');
+let lastVolume = 1;
+let hideSoundTimeout;
+
+// ================= GESTION DE LA VIDEO (MOBILE / DESKTOP) =================
+function updateVideoSource() {
+    if (!video) return;
+    const isMobile = window.innerWidth <= 768;
+    const targetFile = isMobile ? 'mika vertical.mp4' : 'Lenvrs Week of colors Mika.mp4';
+    const targetSrc = './content/' + targetFile;
+    
+    // Vérification de la source actuelle
+    const currentSrc = video.currentSrc || video.src || '';
+    if (!decodeURIComponent(currentSrc).includes(targetFile)) {
+        const wasPlaying = !video.paused;
+        video.src = targetSrc;
+        video.load();
+        if (wasPlaying) {
+            video.play().catch(() => {});
+        }
+    }
+}
+
+// Initialisation immédiate
+updateVideoSource();
+window.addEventListener('resize', updateVideoSource);
+window.addEventListener('orientationchange', updateVideoSource);
+
+// ================= GESTION DU SON & DISPARITION 2s =================
+function updateSoundUI(isMuted, volume) {
+    if (!iconSoundOn || !iconSoundOff || !volumeSlider) return;
+    if (isMuted || volume === 0) {
+        iconSoundOn.classList.add('sound-icon-hidden');
+        iconSoundOff.classList.remove('sound-icon-hidden');
+        volumeSlider.value = 0;
+    } else {
+        iconSoundOff.classList.add('sound-icon-hidden');
+        iconSoundOn.classList.remove('sound-icon-hidden');
+        volumeSlider.value = volume;
+    }
+}
+
+function toggleSound() {
+    if (!video) return;
+    if (video.muted || video.volume === 0) {
+        video.muted = false;
+        video.volume = (lastVolume > 0) ? lastVolume : 1;
+        updateSoundUI(false, video.volume);
+    } else {
+        lastVolume = video.volume > 0 ? video.volume : 1;
+        video.muted = true;
+        updateSoundUI(true, 0);
+    }
+}
+
+function setVolume(val) {
+    if (!video) return;
+    const num = parseFloat(val);
+    video.volume = num;
+    if (num === 0) {
+        video.muted = true;
+        updateSoundUI(true, 0);
+    } else {
+        video.muted = false;
+        lastVolume = num;
+        updateSoundUI(false, num);
+    }
+}
+
+// Fonction pour afficher le mélangeur et le masquer automatiquement après 2 secondes
+function showSoundControl() {
+    if (!soundControl) return;
+    soundControl.classList.add('active');
+    clearTimeout(hideSoundTimeout);
+    hideSoundTimeout = setTimeout(() => {
+        soundControl.classList.remove('active');
+    }, 2000); // Disparaît précisément au bout de 2 secondes
+}
+
+if (video && soundControl) {
+    // Événements sur la vidéo
+    video.addEventListener('mousemove', showSoundControl);
+    video.addEventListener('mouseenter', showSoundControl);
+    video.addEventListener('touchstart', showSoundControl, { passive: true });
+    video.addEventListener('click', showSoundControl);
+    
+    // Événements sur le widget de son
+    soundControl.addEventListener('mousemove', showSoundControl);
+    soundControl.addEventListener('mouseenter', showSoundControl);
+    soundControl.addEventListener('touchstart', showSoundControl, { passive: true });
+}
+
+if (soundBtn) {
+    soundBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSound();
+        showSoundControl();
+    });
+}
+
+if (volumeSlider) {
+    volumeSlider.addEventListener('input', (e) => {
+        e.stopPropagation();
+        setVolume(e.target.value);
+        showSoundControl();
+    });
+    volumeSlider.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    volumeSlider.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        showSoundControl();
+    }, { passive: true });
+}
+
 // ================= FONCTIONS D'AFFICHAGE (LECTURE) =================
 
 // 1. Récupérer les messages depuis Google Sheets
@@ -58,7 +178,6 @@ async function fetchMessages() {
     }
 }
 
-// 2. Choisir et afficher le message
 // 2. Choisir et afficher le message
 function showNextMessage() {
     if (!allMessages || allMessages.length === 0) {
@@ -99,9 +218,24 @@ function showNextMessage() {
 // ================= FONCTIONS DU SITE (INTERACTION) =================
 
 function lancerSite() {
-    // On retire le mute et on lance la vidéo
+    // On s'assure que la bonne vidéo est chargée
+    updateVideoSource();
+
+    // On lance la vidéo avec son
     video.muted = false;
-    video.play();
+    video.volume = lastVolume;
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            updateSoundUI(false, video.volume);
+        }).catch(err => {
+            console.warn("Autoplay sonore bloqué par le navigateur, lecture en muet :", err);
+            video.muted = true;
+            video.play();
+            updateSoundUI(true, 0);
+        });
+    }
 
     // On fait disparaître l'overlay
     overlay.style.opacity = '0';
