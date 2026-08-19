@@ -254,7 +254,7 @@ async function envoyerMessage() {
     const input = document.getElementById('dedicaceInput');
     const emailInput = document.getElementById('emailInput');
     const statut = document.getElementById('statut');
-    const btn = document.querySelector('button'); // Le bouton envoyer
+    const btn = document.getElementById('btn-envoyer') || document.querySelector('.form-container button'); // Le bouton envoyer de dédicace
     const logoSidebar = document.querySelector('.logo-sidebar'); // Le logo de la barre latérale
 
     // Si le message est vide, on arrête tout de suite
