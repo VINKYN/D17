@@ -453,17 +453,17 @@ button:disabled {
     /* 1. OVERLAY DE DEPART */
     .overlay-content {
         width: 100%;
-        max-width: 320px;
+        max-width: 380px;
         padding-bottom: 20px;
     }
 
     .overlay-logo {
-        width: 80vw;
-        max-width: 260px;
+        width: 85vw;
+        max-width: 320px;
         height: auto;
-        max-height: 18vh;
+        max-height: 22vh;
         object-fit: contain;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
 
     .overlay-text {
@@ -530,10 +530,10 @@ button:disabled {
         position: fixed;
         top: 8px;
         left: 8px;
-        height: 26px;
-        max-height: 26px;
+        height: 32px;
+        max-height: 32px;
         width: auto;
-        max-width: 35vw;
+        max-width: 40vw;
         z-index: 20;
         margin-top: 0;
     }
