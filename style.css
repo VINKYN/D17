@@ -797,7 +797,7 @@ button:disabled {
 
     .d17-info-box p {
         margin: 0 0 4px 0;
-        font-size: 11px;
+        font-size: 14.5px; /* Agrandie de 30% */
         line-height: 1.15;
         color: #ffffff;
         letter-spacing: 0.2px;
