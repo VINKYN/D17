@@ -446,7 +446,7 @@ button:disabled {
 }
 
 /* =======================================================
-   ADAPTATION MOBILE - VIDEO VERTICALE PLEINE LARGEUR
+   ADAPTATION MOBILE - VIDEO VERTICALE PLEINE LARGEUR & HAUTEUR NATURELLE SANS COUPURE
    ======================================================= */
 @media (max-width: 768px) {
     
@@ -456,6 +456,7 @@ button:disabled {
         min-height: 100dvh;
         overflow-x: hidden;
         overflow-y: auto;
+        position: relative;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -481,25 +482,26 @@ button:disabled {
         margin: 0;
     }
 
-    /* 2. VIDEO VERTICALE PLEINE LARGEUR EN HAUT */
+    /* 2. VIDEO VERTICALE : 100VW ET HAUTEUR NATURELLE 9:16 SANS AUCUNE COUPURE */
     #bg-video {
-        position: fixed;
-        top: 0;
-        left: 0;
+        position: relative;
+        top: auto;
+        left: auto;
         width: 100vw;
-        height: 52vh;
-        max-height: 54vh;
-        aspect-ratio: auto;
+        height: calc(100vw * 16 / 9);
+        max-height: none;
+        aspect-ratio: 9 / 16;
         object-fit: cover;
         object-position: center;
         z-index: 5;
+        display: block;
         border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
     }
 
     /* 3. LOGO TOP LENVRS EN HAUT A GAUCHE SUR LA VIDEO */
     .logo-top-gauche {
-        position: fixed;
+        position: absolute;
         top: 10px;
         left: 10px;
         height: 32px;
@@ -514,7 +516,7 @@ button:disabled {
 
     /* 4. LOGO 17 EN HAUT A DROITE SUR LA VIDEO */
     .logo-sidebar {
-        position: fixed;
+        position: absolute;
         top: 10px;
         right: 10px;
         height: 30px;
@@ -529,8 +531,8 @@ button:disabled {
 
     /* 5. CONTROLE DU SON EN BAS A GAUCHE DE LA VIDEO */
     .sound-control {
-        position: fixed;
-        top: calc(52vh - 42px);
+        position: absolute;
+        top: calc(100vw * 16 / 9 - 46px);
         left: 10px;
         padding: 4px 10px 4px 6px;
         gap: 6px;
@@ -566,23 +568,23 @@ button:disabled {
         height: 10px;
     }
 
-    /* 6. TOUT LE RESTE EN DESSOUS DE LA VIDEO */
+    /* 6. TOUT LE RESTE DIRECTEMENT EN DESSOUS DE LA VIDEO */
     .sidebar-droite {
-        position: relative;
+        position: static;
         top: auto;
         right: auto;
         bottom: auto;
         left: auto;
         width: 100vw;
         height: auto;
-        min-height: calc(100dvh - 52vh);
-        margin-top: 52vh;
+        min-height: auto;
+        margin-top: 0;
         z-index: 10;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        padding: 10px 12px max(14px, env(safe-area-inset-bottom)) 12px;
+        padding: 10px 12px max(24px, env(safe-area-inset-bottom)) 12px;
         box-sizing: border-box;
     }
 
