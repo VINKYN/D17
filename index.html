@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="style.css?v=3.7">
     <link rel="icon" type="image/svg+xml" href="content/logo L17.svg">
     <title>TOP LENVRS</title>
 
@@ -30,12 +30,14 @@
     <!-- Contrôle du son en bas à gauche de la vidéo (blanc transparent, très discret) -->
     <div id="sound-control" class="sound-control">
         <button id="sound-btn" class="sound-btn" aria-label="Activer ou couper le son" title="Son">
-            <svg id="icon-sound-on" class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg id="icon-sound-on" class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
             </svg>
-            <svg id="icon-sound-off" class="sound-icon sound-icon-hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg id="icon-sound-off" class="sound-icon sound-icon-hidden" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
@@ -61,20 +63,22 @@
     </div>
 
     <!-- Bouton mobile pour ouvrir l'interface dédicace sans couper la vidéo -->
-    <button id="btn-open-dedicace" class="btn-open-dedicace" onclick="ouvrirModalDedicace()" aria-label="Envoyer une dédicace">
+    <button id="btn-open-dedicace" class="btn-open-dedicace" onclick="ouvrirModalDedicace()"
+        aria-label="Envoyer une dédicace">
         <span>ENVOYER UNE DÉDICACE !!</span>
     </button>
 
     <div class="sidebar-droite" id="sidebar-droite">
-        <button id="btn-close-dedicace" class="btn-close-dedicace" onclick="fermerModalDedicace()" aria-label="Fermer">✕</button>
+        <button id="btn-close-dedicace" class="btn-close-dedicace" onclick="fermerModalDedicace()"
+            aria-label="Fermer">✕</button>
         <img src="content/logo L17.svg" alt="Logo L17" class="logo-sidebar">
 
         <div class="d17-container">
             <h2 class="d17-title">ENVOIE <span class="thin">TES</span> DEDICACES !!</h2>
-            
+
             <div class="mobile-flex-container">
                 <div class="d17-info-box">
-                    <p>ET TENTE DE GAGNER UN T-SHIRT EN AJOUTANT TON E-MAIL !!!</p>
+                    <p>ET TENTE DE GAGNER UN TSHIRT EN AJOUTANT TON E-MAIL !!!</p>
                     <input type="email" id="emailInput" placeholder="TON-EMAIL@EXEMPLE.COM" class="d17-email-field">
                 </div>
 
@@ -87,7 +91,7 @@
             <p id="statut"></p>
         </div>
     </div>
-    <script src="script.js?v=3.6"></script>
+    <script src="script.js?v=3.7"></script>
 </body>
 
 </html>
