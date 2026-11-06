@@ -446,10 +446,19 @@ button:disabled {
 }
 
 /* =======================================================
-   ADAPTATION MOBILE ULTRA-OPTIMISEE (AUCUN PROBLEME DE MARGE)
+   ADAPTATION MOBILE - VIDEO VERTICALE PLEINE LARGEUR
    ======================================================= */
 @media (max-width: 768px) {
     
+    html, body {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     /* 1. OVERLAY DE DEPART */
     .overlay-content {
         width: 100%;
@@ -472,32 +481,64 @@ button:disabled {
         margin: 0;
     }
 
-    /* 2. VIDEO EN HAUT A GAUCHE AVEC FORMAT VERTICAL PARFAIT */
+    /* 2. VIDEO VERTICALE PLEINE LARGEUR EN HAUT */
     #bg-video {
         position: fixed;
         top: 0;
         left: 0;
-        width: 80vw;
-        height: calc(80vw * 16 / 9);
-        max-height: calc(100dvh - 225px);
-        aspect-ratio: 9 / 16;
+        width: 100vw;
+        height: 52vh;
+        max-height: 54vh;
+        aspect-ratio: auto;
         object-fit: cover;
         object-position: center;
         z-index: 5;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
     }
 
-    /* 3. CONTROLE DU SON EN BAS A GAUCHE DE LA VIDEO (BLANC TRANSPARENT, DISCRET) */
+    /* 3. LOGO TOP LENVRS EN HAUT A GAUCHE SUR LA VIDEO */
+    .logo-top-gauche {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        height: 32px;
+        max-height: 32px;
+        width: auto;
+        max-width: 45vw;
+        z-index: 25;
+        margin-top: 0;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
+        pointer-events: none;
+    }
+
+    /* 4. LOGO 17 EN HAUT A DROITE SUR LA VIDEO */
+    .logo-sidebar {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        height: 30px;
+        max-height: 30px;
+        width: auto;
+        max-width: 46px;
+        margin-top: 0;
+        z-index: 25;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
+        pointer-events: none;
+    }
+
+    /* 5. CONTROLE DU SON EN BAS A GAUCHE DE LA VIDEO */
     .sound-control {
-        top: calc(min(80vw * 16 / 9, 100dvh - 225px) - 36px);
-        left: 8px;
+        position: fixed;
+        top: calc(52vh - 42px);
+        left: 10px;
         padding: 4px 10px 4px 6px;
         gap: 6px;
-        z-index: 100;
+        z-index: 30;
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.25);
         border: 1px solid rgba(255, 255, 255, 0.6);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .sound-control.active {
@@ -525,77 +566,58 @@ button:disabled {
         height: 10px;
     }
 
-    /* 4. LOGO TOP LENVRS EN HAUT A GAUCHE */
-    .logo-top-gauche {
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        height: 32px;
-        max-height: 32px;
-        width: auto;
-        max-width: 40vw;
-        z-index: 20;
-        margin-top: 0;
-    }
-
-    /* 5. LOGO 17 EN HAUT A DROITE */
-    .logo-sidebar {
-        position: fixed;
-        top: 8px;
-        right: 8px;
-        width: calc(20vw - 16px);
-        max-width: 48px;
-        height: auto;
-        max-height: 40px;
-        margin-top: 0;
-        z-index: 1000;
-    }
-
-    /* 6. CONTAINER BAS DE PAGE (FORMULAIRE & TICKER) */
+    /* 6. TOUT LE RESTE EN DESSOUS DE LA VIDEO */
     .sidebar-droite {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: relative;
         top: auto;
-        width: 100%;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        width: 100vw;
         height: auto;
-        z-index: 25;
-        padding: 0 10px max(10px, env(safe-area-inset-bottom)) 10px;
-        box-sizing: border-box;
+        min-height: calc(100dvh - 52vh);
+        margin-top: 52vh;
+        z-index: 10;
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
         align-items: stretch;
+        padding: 10px 12px max(14px, env(safe-area-inset-bottom)) 12px;
+        box-sizing: border-box;
     }
 
-    /* 7. TICKER ALIGNE A GAUCHE AU-DESSUS DU TITRE */
+    /* 7. TICKER ALIGNE A GAUCHE JUSTE SOUS LA VIDEO */
     .ticker-container {
-        position: static;
-        margin-bottom: 5px;
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        margin-bottom: 8px;
         align-self: flex-start;
         display: flex;
         align-items: center;
         max-width: 100%;
-        z-index: 26;
+        z-index: 15;
     }
 
     .ticker-icon {
         height: 26px;
         width: auto;
-        margin-right: -7px;
+        margin-right: -6px;
         z-index: 10;
+        flex-shrink: 0;
     }
 
     .ticker-text {
         font-size: 15px;
         padding: 2px 8px;
-        max-width: calc(100vw - 55px);
+        max-width: calc(100vw - 45px);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 
-    /* 8. CONTENEUR TITRE ET BOITES */
+    /* 8. CONTENEUR TITRE */
     .d17-container {
         width: 100%;
         margin: 0;
@@ -604,14 +626,19 @@ button:disabled {
     }
 
     .d17-title {
-        font-size: clamp(20px, 2.8vh, 24px);
+        font-size: clamp(20px, 2.8vh, 25px);
         line-height: 1;
-        margin-bottom: 5px;
+        margin: 0 0 8px 0;
         text-align: left;
         letter-spacing: 0.5px;
+        color: #1e1e1e;
     }
 
-    /* 9. DEUX BOITES COTE A COTE AVEC LARGEURS EQUITABLES ET SANS DEBORDEMENT */
+    .d17-title .thin {
+        color: #ffffff;
+    }
+
+    /* 9. DEUX BOITES COTE A COTE SANS DEBORDEMENT */
     .mobile-flex-container {
         display: flex;
         flex-direction: row;
@@ -628,21 +655,21 @@ button:disabled {
         width: auto;
         margin: 0 !important;
         padding: 6px 8px;
-        border-left: 3px solid white;
+        border-left: 3px solid #ffffff;
         border-right: 3px solid #1e1e1e;
         border-radius: 0;
         background: #1e1e1e;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-height: 80px;
+        min-height: 82px;
         box-sizing: border-box;
     }
 
     .d17-info-box p {
         margin: 0 0 4px 0;
         font-size: 11px;
-        line-height: 1.1;
+        line-height: 1.15;
         color: #ffffff;
         letter-spacing: 0.2px;
     }
@@ -664,10 +691,10 @@ button:disabled {
         min-width: 0;
         width: auto;
         height: auto !important;
-        min-height: 80px;
+        min-height: 82px;
         padding: 6px 8px;
         font-size: 15px;
-        border-left: 3px solid white;
+        border-left: 3px solid #ffffff;
         border-right: 3px solid #1e1e1e;
         border-radius: 0;
         resize: none;
@@ -679,16 +706,16 @@ button:disabled {
     /* 10. BOUTON ENVOYER */
     .form-container {
         width: 100%;
-        margin: 6px 0 0 0;
+        margin: 8px 0 0 0;
         padding: 0;
     }
 
     button {
         width: 100%;
         margin-top: 0;
-        font-size: 20px;
+        font-size: 21px;
         padding: 4px;
-        height: 38px;
+        height: 40px;
         background: #1e1e1e;
         border: 2px solid #ffffff;
         color: #ffffff;
@@ -697,5 +724,13 @@ button:disabled {
         justify-content: center;
         cursor: pointer;
         box-sizing: border-box;
+        transition: all 0.2s;
+    }
+
+    #statut {
+        margin: 4px 0 0 0;
+        font-size: 14px;
+        min-height: 18px;
+        text-align: center;
     }
 }
