@@ -53,6 +53,21 @@ updateVideoSource();
 window.addEventListener('resize', updateVideoSource);
 window.addEventListener('orientationchange', updateVideoSource);
 
+// ================= GESTION MODALE DEDICACE (MOBILE) =================
+function ouvrirModalDedicace() {
+    const sidebar = document.getElementById('sidebar-droite');
+    const backdrop = document.getElementById('modal-backdrop');
+    if (sidebar) sidebar.classList.add('modal-open');
+    if (backdrop) backdrop.classList.add('active');
+}
+
+function fermerModalDedicace() {
+    const sidebar = document.getElementById('sidebar-droite');
+    const backdrop = document.getElementById('modal-backdrop');
+    if (sidebar) sidebar.classList.remove('modal-open');
+    if (backdrop) backdrop.classList.remove('active');
+}
+
 // ================= GESTION DU SON & DISPARITION 2s =================
 function updateSoundUI(isMuted, volume) {
     if (!iconSoundOn || !iconSoundOff || !volumeSlider) return;
@@ -278,12 +293,16 @@ async function envoyerMessage() {
 
         // --- SUCCES ---
         input.value = ""; // On vide le champ
+        statut.innerText = "DÉDICACE ENVOYÉE !";
 
         // On rafraichit les messages pour voir le sien (optionnel)
         setTimeout(fetchMessages, 1000);
 
-        // On efface le message de succès après 3 secondes
-        setTimeout(() => { statut.innerText = ""; }, 3000);
+        // On referme automatiquement la modale après 1.8s sur mobile pour continuer le clip
+        setTimeout(() => { 
+            fermerModalDedicace();
+            statut.innerText = ""; 
+        }, 1800);
 
     } catch (error) {
         // --- ERREUR ---
