@@ -6,7 +6,8 @@ img {
     max-width: 100%;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100vh;
     height: 100dvh;
@@ -22,7 +23,7 @@ html, body {
         linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 50%, transparent 60%),
         linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%),
         linear-gradient(to bottom right, #5C1D50, #FF3BEB);
-        
+
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
@@ -32,9 +33,11 @@ html, body {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -92,7 +95,7 @@ html, body {
     border-radius: 20px;
     padding: 5px 12px 5px 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    
+
     /* Transparent et masqué par défaut */
     opacity: 0;
     pointer-events: none;
@@ -225,6 +228,7 @@ html, body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -400,6 +404,7 @@ button:disabled {
         transform: scale(0.8);
         opacity: 0;
     }
+
     to {
         transform: scale(1);
         opacity: 1;
@@ -440,6 +445,7 @@ button:disabled {
     0% {
         clip-path: inset(0 100% 0 0);
     }
+
     100% {
         clip-path: inset(0 0 0 0);
     }
@@ -457,14 +463,16 @@ button:disabled {
    ADAPTATION MOBILE - PLEIN ECRAN SANS SCROLL & MODALE DEDICACE
    ======================================================= */
 @media (max-width: 768px) {
-    
-    html, body {
+
+    html,
+    body {
         width: 100%;
         height: 100vh;
         height: 100dvh;
         margin: 0;
         padding: 0;
-        overflow: hidden !important; /* Aucun scroll */
+        overflow: hidden !important;
+        /* Aucun scroll */
         position: relative;
     }
 
@@ -518,7 +526,7 @@ button:disabled {
         max-width: 45vw;
         z-index: 20;
         margin-top: 0;
-        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
+        filter: none;
         pointer-events: none;
     }
 
@@ -533,12 +541,13 @@ button:disabled {
         max-width: 46px;
         margin-top: 0;
         z-index: 20;
-        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
+        filter: none;
         pointer-events: none;
     }
 
     .logo-sidebar {
-        display: none !important; /* Remplacé par logo-mobile-canal sur mobile */
+        display: none !important;
+        /* Remplacé par logo-mobile-canal sur mobile */
     }
 
     /* 4. BANDEAU TICKER DEDICACES EN BAS SUR LA VIDEO */
@@ -631,7 +640,8 @@ button:disabled {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 0 !important; /* COMPLÈTEMENT CARRÉ */
+        border-radius: 0 !important;
+        /* COMPLÈTEMENT CARRÉ */
         color: #ffffff;
         padding: 5px 12px;
         font-family: 'Bebas Neue', sans-serif;
@@ -688,8 +698,10 @@ button:disabled {
         max-height: 82vh;
         max-height: 82dvh;
         background-color: #FF3BEB;
-        background: #FF3BEB; /* Rose le plus clair uni sans dégradé */
-        border-top: 3px solid #ffffff; /* Liseré blanc */
+        background: #FF3BEB;
+        /* Rose le plus clair uni sans dégradé */
+        border-top: 3px solid #ffffff;
+        /* Liseré blanc */
         border-top-left-radius: 14px;
         border-top-right-radius: 14px;
         box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.5);
@@ -797,7 +809,8 @@ button:disabled {
 
     .d17-info-box p {
         margin: 0 0 4px 0;
-        font-size: 14.5px; /* Agrandie de 30% */
+        font-size: 12px;
+        /* Agrandie de 30% */
         line-height: 1.15;
         color: #ffffff;
         letter-spacing: 0.2px;
